@@ -4,23 +4,25 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc_pattern_scratch/bloc/animes_bloc.dart';
 import 'package:flutter_bloc_pattern_scratch/bloc/generic_bloc_provider.dart';
 import 'package:flutter_bloc_pattern_scratch/widgets/anime_list.dart';
+import 'package:http/http.dart';
 
 class Home extends StatefulWidget {
-  String username;
+  final String username;
   Home({this.username});
 
   @override
-  _HomeState createState() => _HomeState();
+  HomeState createState() => HomeState();
 }
 
-class _HomeState extends State<Home> {
+class HomeState extends State<Home> {
   final controller = TextEditingController();
+  final client = Client();
+
   AnimeBloc animeBloc;
 
   @override
   Widget build(BuildContext context) {
     animeBloc = BlocProvider.of(context);
-
 
     return WillPopScope(
       onWillPop: () => SystemNavigator.pop(),
@@ -69,9 +71,9 @@ class _HomeState extends State<Home> {
                     icon: Icon(Icons.search),
                     onPressed: () async {
                       if (controller.text.isNotEmpty) {
-                        animeBloc.getAnimes(controller.text);
+                        animeBloc.getAnimes(controller.text, client);
                       }
-                    },             
+                    },
                   ),
                 ),
               ],

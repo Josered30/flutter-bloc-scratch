@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 
 class Details extends StatelessWidget {
 
-  Anime anime;
+  final Anime anime;
   Details({this.anime});
 
   @override

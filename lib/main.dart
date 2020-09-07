@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_pattern_scratch/route_generator.dart';
 
+
 void main() {
   runApp(App());
 }
 
-class App extends StatefulWidget {  
+class App extends StatefulWidget { 
+
   @override
   _AppState createState() => _AppState();
 }

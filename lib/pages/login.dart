@@ -4,8 +4,6 @@ import 'package:flutter_bloc_pattern_scratch/bloc/login_bloc.dart';
 class Login extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final bloc = LoginBloc();
-  String username = '';
-  String password = '';
 
 
   @override
@@ -32,6 +30,7 @@ class Login extends StatelessWidget {
                       stream: bloc.emailState,
                       builder: (context, snapshot) {
                         return TextFormField(
+                          key: Key("Email field"),
                           style: Theme.of(context).textTheme.bodyText1,
                           decoration: InputDecoration(
                             hintStyle: Theme.of(context).textTheme.bodyText1,
@@ -60,6 +59,7 @@ class Login extends StatelessWidget {
                       stream: bloc.passwordState,
                       builder: (context, snapshot) {
                         return TextFormField(
+                            key: Key("Password field"),
                             style: Theme.of(context).textTheme.bodyText1,
                             decoration: InputDecoration(
                                 hintStyle:
@@ -91,6 +91,7 @@ class Login extends StatelessWidget {
                       stream: bloc.submitCheck,
                       builder: (context, snapshot) {
                         return RaisedButton(
+                          key: Key("Login buttom"),
                           color: Theme.of(context).buttonColor,
                           onPressed: () {
                             if (snapshot.hasData) {
