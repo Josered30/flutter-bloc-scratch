@@ -1,24 +1,21 @@
-import 'dart:developer';
-import 'dart:io';
-
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
 void main() {
+  FlutterDriver driver;
+
+  setUpAll(() async {
+    driver = await FlutterDriver.connect();
+  });
+
+  // Close the connection to the driver after the tests have completed.
+  tearDownAll(() async {
+    if (driver != null) {
+      driver.close();
+    }
+  });
+
   group("Integration", () {
-    FlutterDriver driver;
-
-    setUpAll(() async {
-      driver = await FlutterDriver.connect();
-    });
-
-    // Close the connection to the driver after the tests have completed.
-    tearDownAll(() async {
-      if (driver != null) {
-        driver.close();
-      }
-    });
-
     test("Login", () async {
       driver.tap(find.byValueKey("Email field"));
       await driver.enterText('josered');
